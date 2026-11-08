@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deepfake Detection Training Study | Research Questionnaire</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="header-brand">
+        <span class="brand-badge">Study</span>
+        <span class="brand-title">Visual Media Authenticity Study</span>
+      </div>
+      <div class="participant-tag" title="Anonymous Participant Identifier">
+        Participant: <span id="participantBadge">Generating...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Progress Stepper -->
+  <div class="progress-container">
+    <div class="progress-inner">
+      <div class="progress-meta">
+        <span id="progressPhaseLabel" style="font-weight: 600;">Participant Registration</span>
+        <span id="progressPercentage" style="font-family: var(--font-mono); font-weight: 600;">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-bar" id="progressFill"></div>
+      </div>
+      <div class="stepper-phases">
+        <span class="phase-item active">1. Overview</span>
+        <span class="phase-item">2. Baseline Test</span>
+        <span class="phase-item">3. Training</span>
+        <span class="phase-item">4. Follow-up Test</span>
+        <span class="phase-item">5. Completed</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Body Content -->
+  <main class="main-content">
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: DEMOGRAPHICS & STUDY OVERVIEW       -->
+    <!-- ========================================== -->
+    <div id="viewDemographics" class="card">
+      <div class="badge badge-blue">Research Objective</div>
+      <h1>Evaluation of Deepfake Image Detection Training</h1>
+      <p class="subtitle">
+        This empirical research study investigates whether a short, structured educational session 
+        improves an individual's ability to distinguish authentic photographs from AI-generated synthetic images.
+      </p>
+
+      <!-- Ethical Anonymity Notice -->
+      <div class="callout">
+        <div class="callout-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Strict Privacy & Anonymity Protocol
+        </div>
+        <p class="callout-content">
+          To protect participant privacy, we <strong>do not collect names, email addresses, phone numbers, or IP addresses</strong>. 
+          Your responses will be identified exclusively by an anonymous, automatically generated code (<strong id="displayPid">PID-XXXXX</strong>). 
+          Participation takes approximately 5–7 minutes.
+        </p>
+      </div>
+
+      <!-- Participant Demographic Inputs -->
+      <div class="form-group">
+        <label for="ageSelect" class="form-label">Age Range <span style="font-weight: normal; color: var(--text-subtle);">(Optional)</span></label>
+        <select id="ageSelect" class="select-input">
+          <option value="Prefer not to say">Prefer not to say</option>
+          <option value="18 – 24">18 – 24</option>
+          <option value="25 – 34">25 – 34</option>
+          <option value="35 – 44">35 – 44</option>
+          <option value="45 – 54">45 – 54</option>
+          <option value="55 – 64">55 – 64</option>
+          <option value="65+">65+</option>
+        </select>
+        <div class="form-helper">Used strictly for aggregate demographic comparisons.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Prior Familiarity with Deepfakes & AI Images <span style="color: var(--danger);">*</span></label>
+        <div class="radio-cards-grid">
+          
+          <label class="radio-card selected">
+            <input type="radio" name="familiarity" value="beginner" checked>
+            <div class="radio-card-title">Beginner</div>
+            <p class="radio-card-desc">I rarely think about or encounter AI-generated images.</p>
+          </label>
+
+          <label class="radio-card">
+            <input type="radio" name="familiarity" value="somewhat">
+            <div class="radio-card-title">Somewhat familiar</div>
+            <p class="radio-card-desc">I know what deepfakes are and occasionally see them online.</p>
+          </label>
+
+          <label class="radio-card">
+            <input type="radio" name="familiarity" value="very">
+            <div class="radio-card-title">Very familiar</div>
+            <p class="radio-card-desc">I actively work with, research, or frequently analyze AI media.</p>
+          </label>
+
+        </div>
+      </div>
+
+      <!-- Protocol Notice -->
+      <div style="background-color: var(--bg-muted); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 2rem;">
+        <h3 style="font-size: 0.9rem; margin-bottom: 0.4rem;">Study Structure</h3>
+        <ol style="padding-left: 1.25rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+          <li><strong>Baseline Assessment:</strong> You will evaluate 5 images (one per screen) as either REAL or AI-GENERATED.</li>
+          <li><strong>Detection Training:</strong> A concise visual awareness guide detailing common synthetic anomalies and optical cues.</li>
+          <li><strong>Follow-up Assessment:</strong> You will evaluate 5 fresh images to assess detection accuracy.</li>
+        </ol>
+      </div>
+
+      <button id="btnStartStudy" class="btn btn-primary btn-large">
+        Begin Baseline Assessment &rarr;
+      </button>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: SINGLE IMAGE ASSESSMENT (PRE/POST) -->
+    <!-- ========================================== -->
+    <div id="viewAssessment" class="assessment-container hidden">
+      
+      <div class="card" style="padding: 1.5rem 1.75rem;">
+        <div class="assessment-meta-bar">
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <span id="assessmentBadge" class="badge badge-blue">Baseline Assessment</span>
+            <span id="assessmentCounter" class="assessment-counter">Image 1 of 5</span>
+          </div>
+          <span class="assessment-instructions">Select one option to proceed</span>
+        </div>
+
+        <!-- Image Display Area -->
+        <div class="image-viewport-card" id="imageContainer" style="margin-top: 1.25rem;">
+          
+          <button id="btnInspectImage" class="inspect-btn" title="Inspect image in high resolution">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+            Inspect Image
+          </button>
+
+          <!-- Actual Image element -->
+          <img id="assessmentImage" class="image-display hidden" src="" alt="Assessment Image">
+
+          <!-- Clean Image Slot Placeholder (Active when image file is pending) -->
+          <div id="imagePlaceholder" class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+            </svg>
+            <span class="placeholder-badge">Research Image Slot</span>
+            <h2 class="placeholder-title">Set A • Image 1: Human Portrait</h2>
+            <p class="placeholder-sub">Natural daylight portrait with subtle micro-textures</p>
+            <div class="placeholder-notice">
+              <strong>Image Slot Ready:</strong> Place your test image in the corresponding folder (e.g. <code>assets/images/set_a1.jpg</code>) and it will display here automatically.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Binary Decision Prompt -->
+        <div class="question-prompt-card">
+          <div class="question-text">Do you think this image is REAL or AI-GENERATED?</div>
+          <div class="question-subtext">Examine the image carefully. Choose the option you believe is correct.</div>
+
+          <div class="choice-actions-grid">
+            
+            <!-- Option 1: REAL -->
+            <button id="btnChooseReal" class="choice-btn choice-real">
+              <span class="choice-label choice-label-real">REAL</span>
+              <span class="choice-caption">Authentic Photograph</span>
+            </button>
+
+            <!-- Option 2: AI-GENERATED -->
+            <button id="btnChooseAi" class="choice-btn choice-ai">
+              <span class="choice-label choice-label-ai">AI-GENERATED</span>
+              <span class="choice-caption">Synthetic / Deepfake Image</span>
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: TRAINING TRANSITION NOTICE         -->
+    <!-- ========================================== -->
+    <div id="viewTrainingTransition" class="card hidden" style="text-align: center; padding: 3rem 2rem;">
+      <div class="badge badge-purple">Phase 1 Complete</div>
+      <h1>Baseline Assessment Completed</h1>
+      <p class="subtitle" style="max-width: 580px; margin: 0 auto 2rem auto;">
+        You have completed the initial 5 assessment images. Next, you will complete a short, 
+        interactive training module on how to detect AI-generated visuals.
+      </p>
+
+      <div style="background-color: var(--bg-muted); border-radius: var(--radius-md); max-width: 560px; margin: 0 auto 2.5rem auto; padding: 1.5rem; text-align: left;">
+        <h3 style="font-size: 0.95rem; margin-bottom: 0.6rem;">What you will learn in this session:</h3>
+        <ul style="padding-left: 1.25rem; font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;">
+          <li>How generative AI synthesizes images and why physical flaws occur</li>
+          <li>Facial and anatomical irregularities (hands, ears, teeth, pupil symmetry)</li>
+          <li>Background and architectural anomalies (hallucinated text, distorted perspective)</li>
+          <li>Lighting, shadow, and reflection inconsistencies</li>
+          <li>A 5-step checklist for evaluating questionable images</li>
+        </ul>
+      </div>
+
+      <button id="btnBeginTraining" class="btn btn-primary btn-large">
+        Begin Deepfake Detection Training &rarr;
+      </button>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 4: DEEPFAKE TRAINING MODULE           -->
+    <!-- ========================================== -->
+    <div id="viewTraining" class="card training-deck hidden">
+      
+      <div class="training-nav-header">
+        <div>
+          <span id="trainingBadge" class="badge badge-purple">Core Foundations</span>
+          <div id="trainingStepIndicator" class="training-step-indicator">Module 1 of 6</div>
+        </div>
+        <div id="trainingPillsContainer" class="training-pills">
+          <!-- Step indicators injected by JS -->
+        </div>
+      </div>
+
+      <!-- Training Content Injected Dynamically -->
+      <div id="trainingContentContainer">
+        <!-- Content from study-data.js -->
+      </div>
+
+      <!-- Training Navigation Controls -->
+      <div class="training-footer-nav">
+        <button id="btnPrevTraining" class="btn btn-outline" disabled>
+          &larr; Previous Module
+        </button>
+        <button id="btnNextTraining" class="btn btn-primary">
+          Next Module &rarr;
+        </button>
+        <button id="btnProceedPostTest" class="btn btn-primary hidden" style="background-color: var(--real-color);">
+          Complete Training & Proceed to Final Assessment &rarr;
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 5: STUDY COMPLETE & THANK YOU         -->
+    <!-- ========================================== -->
+    <div id="viewComplete" class="card hidden" style="text-align: center; padding: 6rem 2rem; max-width: 680px; margin: 3rem auto;">
+      <h1 style="font-size: 2rem; font-weight: 600; color: var(--text-main); margin: 0; line-height: 1.4;">
+        Thank you so much for participating.
+      </h1>
+    </div>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- IMAGE ZOOM LIGHTBOX MODAL                  -->
+  <!-- ========================================== -->
+  <div id="zoomModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 960px; height: 90vh;">
+      <div class="modal-header">
+        <div class="modal-title" id="zoomModalTitle">Image Detail Inspector</div>
+        <button id="btnCloseZoom" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body flex-center" style="background-color: #0b0f19; padding: 1rem;">
+        <img id="zoomImage" src="" alt="Full view" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- RESEARCHER PORTAL & ANSWER KEY MODAL       -->
+  <!-- ========================================== -->
+  <div id="researcherModal" class="modal-overlay">
+    <div class="modal-card">
+      
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span class="brand-badge" style="background-color: #4338ca;">Researcher</span>
+          <div class="modal-title">Study Answer Key & Analytics Portal</div>
+        </div>
+        <button id="btnCloseModal" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        
+        <!-- Passcode Prompt (Gated Access) -->
+        <div id="researcherPasscodePrompt" style="max-width: 400px; margin: 3rem auto; text-align: center;">
+          <h3 style="margin-bottom: 0.5rem;">Researcher Access Gate</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            To maintain study integrity, the answer key and participant analytics are restricted to researchers.
+          </p>
+          <div style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 0.75rem;">
+            <input type="password" id="passcodeInput" class="select-input" placeholder="Enter passcode" style="max-width: 240px;">
+            <button id="btnVerifyPasscode" class="btn btn-primary">Unlock</button>
+          </div>
+          <div id="passcodeError" class="hidden" style="color: var(--danger); font-size: 0.8rem;">
+            Incorrect passcode. (Default: <code>researcher2026</code>)
+          </div>
+        </div>
+
+        <!-- Dashboard (Visible after passcode unlock) -->
+        <div id="researcherDashboard" class="hidden">
+          
+          <!-- Summary Metrics Grid -->
+          <h3 style="margin-bottom: 0.75rem;">Aggregate Statistical Metrics</h3>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Total Participants</div>
+              <div class="stat-value" id="statTotalParticipants">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Mean Pre-Accuracy</div>
+              <div class="stat-value" id="statMeanPreAccuracy">—</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Mean Post-Accuracy</div>
+              <div class="stat-value" id="statMeanPostAccuracy">—</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Mean Improvement (&Delta;)</div>
+              <div class="stat-value stat-delta-pos" id="statMeanDelta">—</div>
+            </div>
+          </div>
+
+          <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="stat-card">
+              <div class="stat-label">Counterbalance Split</div>
+              <div class="stat-value" id="statGroupSplit" style="font-size: 1.1rem;">—</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Real Images Accuracy</div>
+              <div class="stat-value" id="statRealAccuracy" style="font-size: 1.1rem;">—</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">AI Images Accuracy</div>
+              <div class="stat-value" id="statAiAccuracy" style="font-size: 1.1rem;">—</div>
+            </div>
+          </div>
+
+          <!-- Google Sheet Live Sync Box -->
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#16a34a"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/><path d="M7 7h10v2H7zm0 4h10v2H7zm0 4h7v2H7z"/></svg>
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: #166534; margin: 0;">Google Sheet Auto-Sync</h4>
+              </div>
+              <a href="https://docs.google.com/spreadsheets/d/12eHKcUxmbpofTkKsFewtNZQKPm9fG608wJtH0Fu9gUs/edit?usp=sharing" target="_blank" style="font-size: 0.8rem; color: #15803d; text-decoration: underline; font-weight: 600;">Open Connected Sheet &UpperRightArrow;</a>
+            </div>
+            <p style="font-size: 0.82rem; color: #166534; margin-bottom: 0.75rem;">
+              Every participant response automatically streams into this spreadsheet in real-time.
+            </p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <input type="url" id="sheetWebhookInput" class="select-input" placeholder="Paste Apps Script Webhook URL (https://script.google.com/...)" style="flex: 1; min-width: 260px; font-size: 0.82rem;">
+              <button id="btnSaveSheetWebhook" class="btn btn-primary" style="background-color: #16a34a; font-size: 0.85rem; padding: 0.6rem 1.2rem;">
+                Connect &amp; Sync All
+              </button>
+            </div>
+            <div id="sheetSyncStatus" class="hidden" style="margin-top: 0.5rem; font-size: 0.8rem; font-weight: 600;"></div>
+          </div>
+
+          <!-- Dataset Export Actions -->
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem;">
+            <button id="btnExportCsv" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.6rem 1.2rem;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export Dataset (.csv)
+            </button>
+            <button id="btnExportJson" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.6rem 1.2rem;">
+              Export Dataset (.json)
+            </button>
+            <button id="btnGenerateMock" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.6rem 1.2rem;">
+              + Generate Sample Participant
+            </button>
+            <button id="btnClearData" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.6rem 1.2rem; color: var(--danger); margin-left: auto;">
+              Clear All Records
+            </button>
+          </div>
+
+          <!-- Master Answer Key -->
+          <h3 style="margin-bottom: 0.5rem;">Predefined Answer Key (Restricted)</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Both sets contain 5 images (2 Authentic, 3 AI-Generated) with matched difficulty levels.
+          </p>
+          <div id="answerKeyContainer">
+            <!-- Answer key tables injected by JS -->
+          </div>
+
+          <!-- Participant Submissions Log -->
+          <h3 style="margin-top: 2rem; margin-bottom: 0.5rem;">Participant Session Log</h3>
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Participant ID</th>
+                  <th>Group</th>
+                  <th>Age Range</th>
+                  <th>Familiarity</th>
+                  <th>Pre-Test</th>
+                  <th>Post-Test</th>
+                  <th>Improvement</th>
+                  <th>Training Time</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody id="participantsTableBody">
+                <!-- Log rows injected by JS -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div>
+        &copy; 2026 Perception & AI Cognitive Research Lab &bull; Deepfake Detection Study
+      </div>
+      <div>
+        <button id="btnOpenResearcher" class="footer-link">
+          Researcher Portal &amp; Answer Key
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="study-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
