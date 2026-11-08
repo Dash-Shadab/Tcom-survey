@@ -1,0 +1,672 @@
+[
+  {
+    "participantId": "PID-SM0L0",
+    "assignedGroup": "Group 1",
+    "demographics": {
+      "ageRange": "18 – 24",
+      "familiarity": "beginner"
+    },
+    "preAccuracyScore": 1,
+    "preAccuracyPct": 20,
+    "postAccuracyScore": 1,
+    "postAccuracyPct": 20,
+    "accuracyImprovement": 0,
+    "percentageImprovement": 0,
+    "realAccuracyPct": 0,
+    "aiAccuracyPct": 33,
+    "avgPreLatencyMs": 1764,
+    "avgPostLatencyMs": 350,
+    "trainingDurationSec": 6,
+    "completedAt": "2026-11-06T14:27:55.746Z",
+    "preTestAnswers": [
+      {
+        "questionNumber": 1,
+        "imageId": "img_a1",
+        "imageLabel": "Set A - Image 1",
+        "category": "Human Portrait",
+        "groundTruth": "REAL",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": false,
+        "latencyMs": 6224,
+        "timestamp": "2026-11-06T14:27:41.017Z"
+      },
+      {
+        "questionNumber": 2,
+        "imageId": "img_a2",
+        "imageLabel": "Set A - Image 2",
+        "category": "Human Portrait",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 870,
+        "timestamp": "2026-11-06T14:27:42.208Z"
+      },
+      {
+        "questionNumber": 3,
+        "imageId": "img_a3",
+        "imageLabel": "Set A - Image 3",
+        "category": "Urban Scene & Architecture",
+        "groundTruth": "REAL",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": false,
+        "latencyMs": 477,
+        "timestamp": "2026-11-06T14:27:43.007Z"
+      },
+      {
+        "questionNumber": 4,
+        "imageId": "img_a4",
+        "imageLabel": "Set A - Image 4",
+        "category": "Architectural Interior",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 521,
+        "timestamp": "2026-11-06T14:27:43.849Z"
+      },
+      {
+        "questionNumber": 5,
+        "imageId": "img_a5",
+        "imageLabel": "Set A - Image 5",
+        "category": "Hands & Object Interaction",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 730,
+        "timestamp": "2026-11-06T14:27:44.900Z"
+      }
+    ],
+    "postTestAnswers": [
+      {
+        "questionNumber": 1,
+        "imageId": "img_b1",
+        "imageLabel": "Set B - Image 1",
+        "category": "Human Portrait",
+        "groundTruth": "REAL",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": false,
+        "latencyMs": 1026,
+        "timestamp": "2026-11-06T14:27:53.420Z"
+      },
+      {
+        "questionNumber": 2,
+        "imageId": "img_b2",
+        "imageLabel": "Set B - Image 2",
+        "category": "Human Portrait",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 79,
+        "timestamp": "2026-11-06T14:27:53.820Z"
+      },
+      {
+        "questionNumber": 3,
+        "imageId": "img_b3",
+        "imageLabel": "Set B - Image 3",
+        "category": "Urban Scene & Architecture",
+        "groundTruth": "REAL",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": false,
+        "latencyMs": 219,
+        "timestamp": "2026-11-06T14:27:54.359Z"
+      },
+      {
+        "questionNumber": 4,
+        "imageId": "img_b4",
+        "imageLabel": "Set B - Image 4",
+        "category": "Cityscape & Night Scene",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 203,
+        "timestamp": "2026-11-06T14:27:54.883Z"
+      },
+      {
+        "questionNumber": 5,
+        "imageId": "img_b5",
+        "imageLabel": "Set B - Image 5",
+        "category": "Group / Hands Interaction",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 221,
+        "timestamp": "2026-11-06T14:27:55.425Z"
+      }
+    ]
+  },
+  {
+    "participantId": "PID-07L3K",
+    "assignedGroup": "Group 2",
+    "demographics": {
+      "ageRange": "Prefer not to say",
+      "familiarity": "beginner"
+    },
+    "preAccuracyScore": 1,
+    "preAccuracyPct": 20,
+    "postAccuracyScore": 3,
+    "postAccuracyPct": 60,
+    "accuracyImprovement": 2,
+    "percentageImprovement": 40,
+    "realAccuracyPct": 0,
+    "aiAccuracyPct": 67,
+    "avgPreLatencyMs": 429,
+    "avgPostLatencyMs": 293,
+    "trainingDurationSec": 4,
+    "completedAt": "2026-11-06T14:34:24.345Z",
+    "preTestAnswers": [
+      {
+        "questionNumber": 1,
+        "imageId": "img_b1",
+        "imageLabel": "Set B - Image 1",
+        "category": "Human Portrait",
+        "groundTruth": "REAL",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": false,
+        "latencyMs": 1117,
+        "timestamp": "2026-11-06T14:34:13.236Z"
+      },
+      {
+        "questionNumber": 2,
+        "imageId": "img_b2",
+        "imageLabel": "Set B - Image 2",
+        "category": "Human Portrait",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 187,
+        "timestamp": "2026-11-06T14:34:13.745Z"
+      },
+      {
+        "questionNumber": 3,
+        "imageId": "img_b3",
+        "imageLabel": "Set B - Image 3",
+        "category": "Urban Scene & Architecture",
+        "groundTruth": "REAL",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": false,
+        "latencyMs": 276,
+        "timestamp": "2026-11-06T14:34:14.343Z"
+      },
+      {
+        "questionNumber": 4,
+        "imageId": "img_b4",
+        "imageLabel": "Set B - Image 4",
+        "category": "Cityscape & Night Scene",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 274,
+        "timestamp": "2026-11-06T14:34:14.937Z"
+      },
+      {
+        "questionNumber": 5,
+        "imageId": "img_b5",
+        "imageLabel": "Set B - Image 5",
+        "category": "Group / Hands Interaction",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 292,
+        "timestamp": "2026-11-06T14:34:15.548Z"
+      }
+    ],
+    "postTestAnswers": [
+      {
+        "questionNumber": 1,
+        "imageId": "img_a1",
+        "imageLabel": "Set A - Image 1",
+        "category": "Human Portrait",
+        "groundTruth": "REAL",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": false,
+        "latencyMs": 698,
+        "timestamp": "2026-11-06T14:34:21.973Z"
+      },
+      {
+        "questionNumber": 2,
+        "imageId": "img_a2",
+        "imageLabel": "Set A - Image 2",
+        "category": "Human Portrait",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 30,
+        "timestamp": "2026-11-06T14:34:22.324Z"
+      },
+      {
+        "questionNumber": 3,
+        "imageId": "img_a3",
+        "imageLabel": "Set A - Image 3",
+        "category": "Urban Scene & Architecture",
+        "groundTruth": "REAL",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": false,
+        "latencyMs": 204,
+        "timestamp": "2026-11-06T14:34:22.849Z"
+      },
+      {
+        "questionNumber": 4,
+        "imageId": "img_a4",
+        "imageLabel": "Set A - Image 4",
+        "category": "Architectural Interior",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 189,
+        "timestamp": "2026-11-06T14:34:23.359Z"
+      },
+      {
+        "questionNumber": 5,
+        "imageId": "img_a5",
+        "imageLabel": "Set A - Image 5",
+        "category": "Hands & Object Interaction",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 344,
+        "timestamp": "2026-11-06T14:34:24.024Z"
+      }
+    ]
+  },
+  {
+    "participantId": "PID-7S5ML",
+    "assignedGroup": "Group 1",
+    "demographics": {
+      "ageRange": "Prefer not to say",
+      "familiarity": "somewhat"
+    },
+    "preAccuracyScore": 2,
+    "preAccuracyPct": 40,
+    "postAccuracyScore": 3,
+    "postAccuracyPct": 60,
+    "accuracyImprovement": 1,
+    "percentageImprovement": 20,
+    "realAccuracyPct": 75,
+    "aiAccuracyPct": 33,
+    "avgPreLatencyMs": 942,
+    "avgPostLatencyMs": 569,
+    "trainingDurationSec": 10,
+    "completedAt": "2026-11-06T14:35:02.487Z",
+    "preTestAnswers": [
+      {
+        "questionNumber": 1,
+        "imageId": "img_a1",
+        "imageLabel": "Set A - Image 1",
+        "category": "Human Portrait",
+        "groundTruth": "REAL",
+        "participantResponse": "REAL",
+        "isCorrect": true,
+        "latencyMs": 2837,
+        "timestamp": "2026-11-06T14:34:41.087Z"
+      },
+      {
+        "questionNumber": 2,
+        "imageId": "img_a2",
+        "imageLabel": "Set A - Image 2",
+        "category": "Human Portrait",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 946,
+        "timestamp": "2026-11-06T14:34:42.354Z"
+      },
+      {
+        "questionNumber": 3,
+        "imageId": "img_a3",
+        "imageLabel": "Set A - Image 3",
+        "category": "Urban Scene & Architecture",
+        "groundTruth": "REAL",
+        "participantResponse": "REAL",
+        "isCorrect": true,
+        "latencyMs": 457,
+        "timestamp": "2026-11-06T14:34:43.133Z"
+      },
+      {
+        "questionNumber": 4,
+        "imageId": "img_a4",
+        "imageLabel": "Set A - Image 4",
+        "category": "Architectural Interior",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 276,
+        "timestamp": "2026-11-06T14:34:43.731Z"
+      },
+      {
+        "questionNumber": 5,
+        "imageId": "img_a5",
+        "imageLabel": "Set A - Image 5",
+        "category": "Hands & Object Interaction",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 195,
+        "timestamp": "2026-11-06T14:34:44.247Z"
+      }
+    ],
+    "postTestAnswers": [
+      {
+        "questionNumber": 1,
+        "imageId": "img_b1",
+        "imageLabel": "Set B - Image 1",
+        "category": "Human Portrait",
+        "groundTruth": "REAL",
+        "participantResponse": "REAL",
+        "isCorrect": true,
+        "latencyMs": 1564,
+        "timestamp": "2026-11-06T14:34:59.597Z"
+      },
+      {
+        "questionNumber": 2,
+        "imageId": "img_b2",
+        "imageLabel": "Set B - Image 2",
+        "category": "Human Portrait",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 303,
+        "timestamp": "2026-11-06T14:35:00.221Z"
+      },
+      {
+        "questionNumber": 3,
+        "imageId": "img_b3",
+        "imageLabel": "Set B - Image 3",
+        "category": "Urban Scene & Architecture",
+        "groundTruth": "REAL",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": false,
+        "latencyMs": 298,
+        "timestamp": "2026-11-06T14:35:00.840Z"
+      },
+      {
+        "questionNumber": 4,
+        "imageId": "img_b4",
+        "imageLabel": "Set B - Image 4",
+        "category": "Cityscape & Night Scene",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 387,
+        "timestamp": "2026-11-06T14:35:01.549Z"
+      },
+      {
+        "questionNumber": 5,
+        "imageId": "img_b5",
+        "imageLabel": "Set B - Image 5",
+        "category": "Group / Hands Interaction",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 294,
+        "timestamp": "2026-11-06T14:35:02.165Z"
+      }
+    ]
+  },
+  {
+    "participantId": "PID-1GN03",
+    "assignedGroup": "Group 1",
+    "demographics": {
+      "ageRange": "35 – 44",
+      "familiarity": "beginner"
+    },
+    "preAccuracyScore": 4,
+    "preAccuracyPct": 80,
+    "postAccuracyScore": 4,
+    "postAccuracyPct": 80,
+    "accuracyImprovement": 0,
+    "percentageImprovement": 0,
+    "realAccuracyPct": 100,
+    "aiAccuracyPct": 67,
+    "avgPreLatencyMs": 2656,
+    "avgPostLatencyMs": 2432,
+    "trainingDurationSec": 19,
+    "completedAt": "2026-11-06T14:49:52.680Z",
+    "preTestAnswers": [
+      {
+        "questionNumber": 1,
+        "imageId": "img_a1",
+        "imageLabel": "Set A - Image 1",
+        "category": "Human Portrait",
+        "groundTruth": "REAL",
+        "participantResponse": "REAL",
+        "isCorrect": true,
+        "latencyMs": 6723,
+        "timestamp": "2026-11-06T14:49:06.770Z"
+      },
+      {
+        "questionNumber": 2,
+        "imageId": "img_a2",
+        "imageLabel": "Set A - Image 2",
+        "category": "Human Portrait",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 2554,
+        "timestamp": "2026-11-06T14:49:09.644Z"
+      },
+      {
+        "questionNumber": 3,
+        "imageId": "img_a3",
+        "imageLabel": "Set A - Image 3",
+        "category": "Urban Scene & Architecture",
+        "groundTruth": "REAL",
+        "participantResponse": "REAL",
+        "isCorrect": true,
+        "latencyMs": 2121,
+        "timestamp": "2026-11-06T14:49:12.086Z"
+      },
+      {
+        "questionNumber": 4,
+        "imageId": "img_a4",
+        "imageLabel": "Set A - Image 4",
+        "category": "Architectural Interior",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 1246,
+        "timestamp": "2026-11-06T14:49:13.654Z"
+      },
+      {
+        "questionNumber": 5,
+        "imageId": "img_a5",
+        "imageLabel": "Set A - Image 5",
+        "category": "Hands & Object Interaction",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 635,
+        "timestamp": "2026-11-06T14:49:14.610Z"
+      }
+    ],
+    "postTestAnswers": [
+      {
+        "questionNumber": 1,
+        "imageId": "img_b1",
+        "imageLabel": "Set B - Image 1",
+        "category": "Human Portrait",
+        "groundTruth": "REAL",
+        "participantResponse": "REAL",
+        "isCorrect": true,
+        "latencyMs": 7744,
+        "timestamp": "2026-11-06T14:49:46.660Z"
+      },
+      {
+        "questionNumber": 2,
+        "imageId": "img_b2",
+        "imageLabel": "Set B - Image 2",
+        "category": "Human Portrait",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 1240,
+        "timestamp": "2026-11-06T14:49:48.221Z"
+      },
+      {
+        "questionNumber": 3,
+        "imageId": "img_b3",
+        "imageLabel": "Set B - Image 3",
+        "category": "Urban Scene & Architecture",
+        "groundTruth": "REAL",
+        "participantResponse": "REAL",
+        "isCorrect": true,
+        "latencyMs": 1132,
+        "timestamp": "2026-11-06T14:49:49.674Z"
+      },
+      {
+        "questionNumber": 4,
+        "imageId": "img_b4",
+        "imageLabel": "Set B - Image 4",
+        "category": "Cityscape & Night Scene",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 961,
+        "timestamp": "2026-11-06T14:49:50.956Z"
+      },
+      {
+        "questionNumber": 5,
+        "imageId": "img_b5",
+        "imageLabel": "Set B - Image 5",
+        "category": "Group / Hands Interaction",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 1082,
+        "timestamp": "2026-11-06T14:49:52.358Z"
+      }
+    ]
+  },
+  {
+    "participantId": "PID-FJMON",
+    "assignedGroup": "Group 1",
+    "demographics": {
+      "ageRange": "Prefer not to say",
+      "familiarity": "beginner"
+    },
+    "preAccuracyScore": 2,
+    "preAccuracyPct": 40,
+    "postAccuracyScore": 4,
+    "postAccuracyPct": 80,
+    "accuracyImprovement": 2,
+    "percentageImprovement": 40,
+    "realAccuracyPct": 75,
+    "aiAccuracyPct": 50,
+    "avgPreLatencyMs": 1596,
+    "avgPostLatencyMs": 1072,
+    "trainingDurationSec": 6,
+    "completedAt": "2026-11-08T18:54:45.826Z",
+    "preTestAnswers": [
+      {
+        "questionNumber": 1,
+        "imageId": "img_a1",
+        "imageLabel": "Set A - Image 1",
+        "category": "Human Portrait",
+        "groundTruth": "REAL",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": false,
+        "latencyMs": 1786,
+        "timestamp": "2026-11-08T18:54:24.281Z"
+      },
+      {
+        "questionNumber": 2,
+        "imageId": "img_a2",
+        "imageLabel": "Set A - Image 2",
+        "category": "Visual Assessment",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 1444,
+        "timestamp": "2026-11-08T18:54:26.054Z"
+      },
+      {
+        "questionNumber": 3,
+        "imageId": "img_a3",
+        "imageLabel": "Set A - Image 3",
+        "category": "Visual Assessment",
+        "groundTruth": "REAL",
+        "participantResponse": "REAL",
+        "isCorrect": true,
+        "latencyMs": 1612,
+        "timestamp": "2026-11-08T18:54:27.990Z"
+      },
+      {
+        "questionNumber": 4,
+        "imageId": "img_a4",
+        "imageLabel": "Set A - Image 4",
+        "category": "Visual Assessment",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 1999,
+        "timestamp": "2026-11-08T18:54:30.323Z"
+      },
+      {
+        "questionNumber": 5,
+        "imageId": "img_a5",
+        "imageLabel": "Set A - Image 5",
+        "category": "Visual Assessment",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 1140,
+        "timestamp": "2026-11-08T18:54:31.789Z"
+      }
+    ],
+    "postTestAnswers": [
+      {
+        "questionNumber": 1,
+        "imageId": "img_b1",
+        "imageLabel": "Set B - Image 1",
+        "category": "Visual Assessment",
+        "groundTruth": "REAL",
+        "participantResponse": "REAL",
+        "isCorrect": true,
+        "latencyMs": 1155,
+        "timestamp": "2026-11-08T18:54:39.982Z"
+      },
+      {
+        "questionNumber": 2,
+        "imageId": "img_b2",
+        "imageLabel": "Set B - Image 2",
+        "category": "Visual Assessment",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 1168,
+        "timestamp": "2026-11-08T18:54:41.472Z"
+      },
+      {
+        "questionNumber": 3,
+        "imageId": "img_b3",
+        "imageLabel": "Set B - Image 3",
+        "category": "Visual Assessment",
+        "groundTruth": "REAL",
+        "participantResponse": "REAL",
+        "isCorrect": true,
+        "latencyMs": 758,
+        "timestamp": "2026-11-08T18:54:42.565Z"
+      },
+      {
+        "questionNumber": 4,
+        "imageId": "img_b4",
+        "imageLabel": "Set B - Image 4",
+        "category": "Visual Assessment",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "AI-GENERATED",
+        "isCorrect": true,
+        "latencyMs": 1677,
+        "timestamp": "2026-11-08T18:54:44.566Z"
+      },
+      {
+        "questionNumber": 5,
+        "imageId": "img_b5",
+        "imageLabel": "Set B - Image 5",
+        "category": "Visual Assessment",
+        "groundTruth": "AI-GENERATED",
+        "participantResponse": "REAL",
+        "isCorrect": false,
+        "latencyMs": 603,
+        "timestamp": "2026-11-08T18:54:45.493Z"
+      }
+    ]
+  }
+]
