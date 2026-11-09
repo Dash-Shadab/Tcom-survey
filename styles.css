@@ -598,7 +598,285 @@ p {
   margin-bottom: 1.75rem;
 }
 
-/* Two Big Options: REAL vs AI-GENERATED */
+/* Confidence Spectrum (1 to 5 Scale) */
+.spectrum-bar-wrapper {
+  max-width: 680px;
+  margin: 0 auto 1.5rem auto;
+  padding: 0 0.5rem;
+}
+
+.spectrum-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.45rem;
+}
+
+.spectrum-anchor {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.anchor-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.real-anchor {
+  color: #059669;
+}
+
+.real-dot {
+  background-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+}
+
+.neutral-anchor {
+  color: #64748b;
+}
+
+.ai-anchor {
+  color: #7c3aed;
+}
+
+.ai-dot {
+  background-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+.spectrum-gradient-line {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #059669 0%, #10b981 25%, #94a3b8 50%, #8b5cf6 75%, #7c3aed 100%);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 5-Column Confidence Scale Grid */
+.confidence-scale-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.65rem;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .confidence-scale-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+}
+
+.confidence-option-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.15rem 0.5rem;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--border-medium);
+  background-color: var(--bg-card);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  outline: none;
+}
+
+.confidence-option-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.confidence-option-btn:disabled {
+  cursor: default;
+}
+
+/* Number Tag */
+.level-number {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+/* Title & Subtitle */
+.level-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0.25rem;
+}
+
+.level-desc {
+  font-size: 0.72rem;
+  color: var(--text-subtle);
+  line-height: 1.3;
+}
+
+/* LEVEL 1: Definitely Real */
+.confidence-option-btn.level-1 {
+  border-color: #a7f3d0;
+  background-color: #f0fdf4;
+}
+.confidence-option-btn.level-1 .level-number {
+  background-color: #059669;
+  color: #ffffff;
+}
+.confidence-option-btn.level-1 .level-title {
+  color: #065f46;
+}
+.confidence-option-btn.level-1:hover:not(:disabled) {
+  border-color: #059669;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.18);
+}
+.confidence-option-btn.level-1.selected {
+  background-color: #059669;
+  border-color: #047857;
+  color: #ffffff;
+}
+.confidence-option-btn.level-1.selected .level-number {
+  background-color: #ffffff;
+  color: #059669;
+}
+.confidence-option-btn.level-1.selected .level-title,
+.confidence-option-btn.level-1.selected .level-desc {
+  color: #ffffff;
+}
+
+/* LEVEL 2: Likely Real */
+.confidence-option-btn.level-2 {
+  border-color: #bbf7d0;
+  background-color: #f7fee7;
+}
+.confidence-option-btn.level-2 .level-number {
+  background-color: #10b981;
+  color: #ffffff;
+}
+.confidence-option-btn.level-2 .level-title {
+  color: #047857;
+}
+.confidence-option-btn.level-2:hover:not(:disabled) {
+  border-color: #10b981;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.18);
+}
+.confidence-option-btn.level-2.selected {
+  background-color: #10b981;
+  border-color: #059669;
+  color: #ffffff;
+}
+.confidence-option-btn.level-2.selected .level-number {
+  background-color: #ffffff;
+  color: #10b981;
+}
+.confidence-option-btn.level-2.selected .level-title,
+.confidence-option-btn.level-2.selected .level-desc {
+  color: #ffffff;
+}
+
+/* LEVEL 3: Unsure / 50-50 */
+.confidence-option-btn.level-3 {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+.confidence-option-btn.level-3 .level-number {
+  background-color: #64748b;
+  color: #ffffff;
+}
+.confidence-option-btn.level-3 .level-title {
+  color: #334155;
+}
+.confidence-option-btn.level-3:hover:not(:disabled) {
+  border-color: #64748b;
+  box-shadow: 0 4px 12px rgba(100, 116, 139, 0.18);
+}
+.confidence-option-btn.level-3.selected {
+  background-color: #64748b;
+  border-color: #475569;
+  color: #ffffff;
+}
+.confidence-option-btn.level-3.selected .level-number {
+  background-color: #ffffff;
+  color: #64748b;
+}
+.confidence-option-btn.level-3.selected .level-title,
+.confidence-option-btn.level-3.selected .level-desc {
+  color: #ffffff;
+}
+
+/* LEVEL 4: Likely AI */
+.confidence-option-btn.level-4 {
+  border-color: #ddd6fe;
+  background-color: #f5f3ff;
+}
+.confidence-option-btn.level-4 .level-number {
+  background-color: #8b5cf6;
+  color: #ffffff;
+}
+.confidence-option-btn.level-4 .level-title {
+  color: #6d28d9;
+}
+.confidence-option-btn.level-4:hover:not(:disabled) {
+  border-color: #8b5cf6;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.18);
+}
+.confidence-option-btn.level-4.selected {
+  background-color: #8b5cf6;
+  border-color: #7c3aed;
+  color: #ffffff;
+}
+.confidence-option-btn.level-4.selected .level-number {
+  background-color: #ffffff;
+  color: #8b5cf6;
+}
+.confidence-option-btn.level-4.selected .level-title,
+.confidence-option-btn.level-4.selected .level-desc {
+  color: #ffffff;
+}
+
+/* LEVEL 5: Highly AI */
+.confidence-option-btn.level-5 {
+  border-color: #c4b5fd;
+  background-color: #faf5ff;
+}
+.confidence-option-btn.level-5 .level-number {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+.confidence-option-btn.level-5 .level-title {
+  color: #581c87;
+}
+.confidence-option-btn.level-5:hover:not(:disabled) {
+  border-color: #7c3aed;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.22);
+}
+.confidence-option-btn.level-5.selected {
+  background-color: #7c3aed;
+  border-color: #6d28d9;
+  color: #ffffff;
+}
+.confidence-option-btn.level-5.selected .level-number {
+  background-color: #ffffff;
+  color: #7c3aed;
+}
+.confidence-option-btn.level-5.selected .level-title,
+.confidence-option-btn.level-5.selected .level-desc {
+  color: #ffffff;
+}
+
+/* Two Big Options: REAL vs AI-GENERATED (Legacy fallback support) */
 .choice-actions-grid {
   display: grid;
   grid-template-columns: 1fr;

@@ -171,13 +171,13 @@
       });
     }
 
-    // Assessment Decision Buttons
-    if (el.btnChooseReal) {
-      el.btnChooseReal.addEventListener('click', () => handleAssessmentChoice("REAL"));
-    }
-    if (el.btnChooseAi) {
-      el.btnChooseAi.addEventListener('click', () => handleAssessmentChoice("AI-GENERATED"));
-    }
+    // Assessment Decision Buttons: 1 to 5 Confidence Scale
+    document.querySelectorAll('.confidence-option-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const rating = parseInt(btn.getAttribute('data-rating'), 10);
+        handleConfidenceRating(rating, btn);
+      });
+    });
 
     // Image Zoom / Inspect
     if (el.btnInspectImage) {
@@ -369,15 +369,11 @@
     const currentSet = getCurrentTestSet();
     const item = currentSet[state.currentQuestionIndex];
     
-    // Reset buttons
-    if (el.btnChooseReal) {
-      el.btnChooseReal.classList.remove('selected');
-      el.btnChooseReal.disabled = false;
-    }
-    if (el.btnChooseAi) {
-      el.btnChooseAi.classList.remove('selected');
-      el.btnChooseAi.disabled = false;
-    }
+    // Reset confidence buttons
+    document.querySelectorAll('.confidence-option-btn').forEach(btn => {
+      btn.classList.remove('selected');
+      btn.disabled = false;
+    });
 
     // Set counters & headers
     const phaseLabel = state.currentPhase === "PRE_TEST" ? "Baseline Assessment" : "Follow-up Assessment";
@@ -436,28 +432,51 @@
     }
   }
 
-  // User submits choice: REAL or AI-GENERATED
-  function handleAssessmentChoice(choice) {
+  // Confidence Rating Mapping (1 to 5 Scale)
+  const CONFIDENCE_LEVELS = {
+    1: { label: "Definitely Real", category: "REAL", desc: "Confident authentic photo" },
+    2: { label: "Likely Real", category: "REAL", desc: "Leaning authentic photo" },
+    3: { label: "Unsure (50/50)", category: "UNSURE", desc: "Equal chance / cannot tell" },
+    4: { label: "Likely AI", category: "AI-GENERATED", desc: "Leaning AI-generated" },
+    5: { label: "Highly AI", category: "AI-GENERATED", desc: "Confident AI / deepfake" }
+  };
+
+  // User submits confidence rating (1 to 5)
+  function handleConfidenceRating(rating, clickedBtn) {
     const latencyMs = Math.round(performance.now() - state.timers.questionStartTime);
     const currentSet = getCurrentTestSet();
     const item = currentSet[state.currentQuestionIndex];
-    const isCorrect = choice === item.groundTruth;
+    const confInfo = CONFIDENCE_LEVELS[rating];
 
-    // Disable buttons and provide quick visual feedback
-    if (choice === "REAL" && el.btnChooseReal) el.btnChooseReal.classList.add('selected');
-    if (choice === "AI-GENERATED" && el.btnChooseAi) el.btnChooseAi.classList.add('selected');
-    
-    if (el.btnChooseReal) el.btnChooseReal.disabled = true;
-    if (el.btnChooseAi) el.btnChooseAi.disabled = true;
+    // Determine correctness based on ground truth:
+    // If REAL: rating 1 or 2 is correct (1 = high confidence, 2 = moderate confidence)
+    // If AI-GENERATED: rating 4 or 5 is correct (5 = high confidence, 4 = moderate confidence)
+    // Rating 3 (unsure) is considered uncalibrated / incorrect
+    let isCorrect = false;
+    if (item.groundTruth === "REAL" && (rating === 1 || rating === 2)) {
+      isCorrect = true;
+    } else if (item.groundTruth === "AI-GENERATED" && (rating === 4 || rating === 5)) {
+      isCorrect = true;
+    }
 
-    // Record response
+    // Disable all buttons and show selected state
+    document.querySelectorAll('.confidence-option-btn').forEach(btn => {
+      btn.disabled = true;
+    });
+    if (clickedBtn) {
+      clickedBtn.classList.add('selected');
+    }
+
+    // Record response with 1-5 rating, descriptive label, and derived category
     const record = {
       questionNumber: state.currentQuestionIndex + 1,
       imageId: item.id,
       imageLabel: item.label,
       category: item.category,
       groundTruth: item.groundTruth,
-      participantResponse: choice,
+      confidenceRating: rating,
+      confidenceLabel: confInfo.label,
+      participantResponse: confInfo.category, // "REAL", "AI-GENERATED", or "UNSURE"
       isCorrect: isCorrect,
       latencyMs: latencyMs,
       timestamp: new Date().toISOString()
@@ -469,7 +488,7 @@
       state.postTestAnswers.push(record);
     }
 
-    // Smooth delay before next question (300ms) without revealing correctness
+    // Smooth delay before next question (320ms) without revealing correctness
     setTimeout(() => {
       advanceAssessment();
     }, 320);
@@ -622,6 +641,12 @@
     const accuracyImprovement = postCorrect - preCorrect;
     const percentageImprovement = postAccuracyPct - preAccuracyPct;
 
+    // Average Confidence (1 to 5 scale)
+    const preConfRatings = state.preTestAnswers.map(a => a.confidenceRating || 3);
+    const postConfRatings = state.postTestAnswers.map(a => a.confidenceRating || 3);
+    const avgPreConfidence = (preConfRatings.reduce((a, b) => a + b, 0) / (preConfRatings.length || 1)).toFixed(1);
+    const avgPostConfidence = (postConfRatings.reduce((a, b) => a + b, 0) / (postConfRatings.length || 1)).toFixed(1);
+
     // Combined answers for Real vs AI breakdown
     const allAnswers = [...state.preTestAnswers, ...state.postTestAnswers];
     const realAnswers = allAnswers.filter(a => a.groundTruth === "REAL");
@@ -653,6 +678,8 @@
       postAccuracyPct: postAccuracyPct,
       accuracyImprovement: accuracyImprovement,
       percentageImprovement: percentageImprovement,
+      avgPreConfidence: parseFloat(avgPreConfidence),
+      avgPostConfidence: parseFloat(avgPostConfidence),
       realAccuracyPct: Math.round(realAccuracyPct),
       aiAccuracyPct: Math.round(aiAccuracyPct),
       avgPreLatencyMs: avgPreLatencyMs,
@@ -865,8 +892,8 @@
           <td>${sub.assignedGroup}</td>
           <td>${sub.demographics?.ageRange || "N/A"}</td>
           <td>${sub.demographics?.familiarity || "N/A"}</td>
-          <td>${sub.preAccuracyScore}/5 (${sub.preAccuracyPct}%)</td>
-          <td>${sub.postAccuracyScore}/5 (${sub.postAccuracyPct}%)</td>
+          <td>${sub.preAccuracyScore}/5 (${sub.preAccuracyPct}%) ${sub.avgPreConfidence !== undefined ? `<br><span style="font-size: 0.72rem; color: #64748b;">Avg: ${sub.avgPreConfidence}/5</span>` : ''}</td>
+          <td>${sub.postAccuracyScore}/5 (${sub.postAccuracyPct}%) ${sub.avgPostConfidence !== undefined ? `<br><span style="font-size: 0.72rem; color: #64748b;">Avg: ${sub.avgPostConfidence}/5</span>` : ''}</td>
           <td class="${deltaClass}" style="font-weight: 700;">${deltaSign}${sub.accuracyImprovement} (${deltaSign}${sub.percentageImprovement}%)</td>
           <td>${sub.trainingDurationSec ? `${sub.trainingDurationSec}s` : 'N/A'}</td>
           <td style="font-size: 0.75rem;">${new Date(sub.completedAt).toLocaleTimeString()}</td>
@@ -928,8 +955,10 @@
       "Familiarity",
       "Pre_Score_Out_Of_5",
       "Pre_Score_Percent",
+      "Pre_Avg_Confidence_1_5",
       "Post_Score_Out_Of_5",
       "Post_Score_Percent",
+      "Post_Avg_Confidence_1_5",
       "Score_Improvement",
       "Percent_Improvement",
       "Real_Accuracy_Pct",
@@ -947,8 +976,10 @@
       s.demographics?.familiarity || 'beginner',
       s.preAccuracyScore,
       s.preAccuracyPct,
+      s.avgPreConfidence !== undefined ? s.avgPreConfidence : '',
       s.postAccuracyScore,
       s.postAccuracyPct,
+      s.avgPostConfidence !== undefined ? s.avgPostConfidence : '',
       s.accuracyImprovement,
       s.percentageImprovement,
       s.realAccuracyPct,
@@ -1010,6 +1041,8 @@
       postAccuracyPct: (postScore / 5) * 100,
       accuracyImprovement: postScore - preScore,
       percentageImprovement: ((postScore - preScore) / 5) * 100,
+      avgPreConfidence: 2.6,
+      avgPostConfidence: 4.2,
       realAccuracyPct: Math.floor(Math.random() * 20) + 70,
       aiAccuracyPct: Math.floor(Math.random() * 25) + 65,
       avgPreLatencyMs: Math.floor(Math.random() * 2500) + 3000,

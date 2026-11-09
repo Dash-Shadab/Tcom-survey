@@ -112,9 +112,9 @@
       <div style="background-color: var(--bg-muted); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 2rem;">
         <h3 style="font-size: 0.9rem; margin-bottom: 0.4rem;">Study Structure</h3>
         <ol style="padding-left: 1.25rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
-          <li><strong>Baseline Assessment:</strong> You will evaluate 5 images (one per screen) as either REAL or AI-GENERATED.</li>
+          <li><strong>Baseline Assessment:</strong> You will evaluate 5 images on a 1–5 confidence scale from <em>Definitely Real</em> to <em>Highly AI</em>.</li>
           <li><strong>Detection Training:</strong> A concise visual awareness guide detailing common synthetic anomalies and optical cues.</li>
-          <li><strong>Follow-up Assessment:</strong> You will evaluate 5 fresh images to assess detection accuracy.</li>
+          <li><strong>Follow-up Assessment:</strong> You will evaluate 5 fresh images to measure your detection accuracy and confidence calibration.</li>
         </ol>
       </div>
 
@@ -165,23 +165,65 @@
 
         </div>
 
-        <!-- Binary Decision Prompt -->
+        <!-- Confidence Rating 1 to 5 Prompt -->
         <div class="question-prompt-card">
-          <div class="question-text">Do you think this image is REAL or AI-GENERATED?</div>
-          <div class="question-subtext">Examine the image carefully. Choose the option you believe is correct.</div>
+          <div class="question-text">Rate the authenticity of this image</div>
+          <div class="question-subtext">Select your confidence level on the 1 to 5 scale below:</div>
 
-          <div class="choice-actions-grid">
+          <!-- Visual Spectrum Bar -->
+          <div class="spectrum-bar-wrapper">
+            <div class="spectrum-labels">
+              <span class="spectrum-anchor real-anchor">
+                <span class="anchor-dot real-dot"></span>
+                <strong>1 &bull; Definitely Real</strong>
+              </span>
+              <span class="spectrum-anchor neutral-anchor">
+                <strong>3 &bull; Unsure</strong> (50/50)
+              </span>
+              <span class="spectrum-anchor ai-anchor">
+                <strong>5 &bull; Highly AI</strong>
+                <span class="anchor-dot ai-dot"></span>
+              </span>
+            </div>
+            <div class="spectrum-gradient-line"></div>
+          </div>
+
+          <!-- 5-Point Confidence Scale Buttons -->
+          <div class="confidence-scale-grid" id="confidenceScaleGrid">
             
-            <!-- Option 1: REAL -->
-            <button id="btnChooseReal" class="choice-btn choice-real">
-              <span class="choice-label choice-label-real">REAL</span>
-              <span class="choice-caption">Authentic Photograph</span>
+            <!-- Option 1: Definitely Real -->
+            <button type="button" class="confidence-option-btn level-1" data-rating="1">
+              <span class="level-number">1</span>
+              <span class="level-title">Definitely Real</span>
+              <span class="level-desc">Confident authentic photo</span>
             </button>
 
-            <!-- Option 2: AI-GENERATED -->
-            <button id="btnChooseAi" class="choice-btn choice-ai">
-              <span class="choice-label choice-label-ai">AI-GENERATED</span>
-              <span class="choice-caption">Synthetic / Deepfake Image</span>
+            <!-- Option 2: Likely Real -->
+            <button type="button" class="confidence-option-btn level-2" data-rating="2">
+              <span class="level-number">2</span>
+              <span class="level-title">Likely Real</span>
+              <span class="level-desc">Leaning authentic photo</span>
+            </button>
+
+            <!-- Option 3: Unsure -->
+            <button type="button" class="confidence-option-btn level-3" data-rating="3">
+              <span class="level-number">3</span>
+              <span class="level-title">Unsure</span>
+              <span class="level-desc">50/50 equal chance</span>
+            </button>
+
+            <!-- Option 4: Likely AI -->
+            <button type="button" class="confidence-option-btn level-4" data-rating="4">
+              <span class="level-number">4</span>
+              <span class="level-title">Likely AI</span>
+              <span class="level-desc">Leaning AI-generated</span>
+            </button>
+
+            <!-- Option 5: Highly AI -->
+            <button type="button" class="confidence-option-btn level-5" data-rating="5">
+              <span class="level-number">5</span>
+              <span class="level-title">Highly AI</span>
+              <span class="level-desc">Confident AI / deepfake</span>
             </button>
 
           </div>
